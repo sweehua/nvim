@@ -22,4 +22,4 @@ else
 fi
 
 # execute nvim
-wt.exe -w 0 nt -- wsl.exe 'RUNONCE=1' bash -c "cd '${dir}' && /usr/local/sbin/nvim.appimage '${file}'"
+wt.exe -w 0 nt -- wsl.exe 'RUNONCE=1' bash -c "cd '${dir}' && /usr/local/sbin/nvim.appimage \"${file}\""
