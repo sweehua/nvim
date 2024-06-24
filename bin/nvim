@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Convert everything to wsl unix path
+declare patharg="$1"
+if [[ "${patharg}" =~ ^[cC]:[/\\] ]]; then
+	patharg=$(wslpath -u "${patharg}")
+fi
+echo path=${patharg}
+
+# decode into dirname and basename
+declare dir
+declare file
+if [[ -d "${patharg}" ]]; then
+	dir="${patharg}"
+	file="."
+elif [[ -f "${patharg}" ]]; then
+	dir=$(dirname "${patharg}")
+	file=$(basename "${patharg}")
+else
+	dir=$(pwd)
+	file=${patharg}
+fi
+
+# execute nvim
+wt.exe -w 0 nt -- wsl.exe 'RUNONCE=1' bash -c "cd '${dir}' && /usr/local/sbin/nvim.appimage '${file}'"
