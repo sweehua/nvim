@@ -7,6 +7,6 @@ require("lspconfig").verible.setup({
     cmd = {
         "verible-verilog-ls",
         "--rules_config",
-        "~/.config/nvim/extra/verible/.rules.verible_lint",
+        vim.fn.stdpath("config") .. "/extra/verible/.rules.verible_lint",
     },
 })
